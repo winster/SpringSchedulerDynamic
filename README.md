@@ -62,3 +62,7 @@ It could pose a threat of interrupting the active threads
 
 Interesting thing to note is `received a response something task-19 2020-05-12T12:48:35.974` which was scheduled before
  refresh event and continue to process and gracefully complete after refresh event.
+
+### Precautions
+1. If you use Async annotation within Scheduling Configuration, there is chance that previous task continue to run after 
+Refresh event. So move the `Async` to a service method.
