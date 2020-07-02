@@ -3,9 +3,7 @@
 Have a look at https://github.com/winster/embedconfigserver to see an example for Refresh feature with Spring Boot & Actuator
 
 #### Points to note
-I started with ScheduledRegistrar and it seems to work
-But I used the approach to cancel existing scheduledtask and recreate on refresh event
-It could pose a threat of interrupting the active threads
+I started with ScheduledRegistrar and it seems to work. When I wanted to cancel the existing scheduledtask and recreate new on refresh event, it posed a threat to interrupt the active threads.
 
 ### How to Test
 
@@ -64,5 +62,4 @@ Interesting thing to note is `received a response something task-19 2020-05-12T1
  refresh event and continue to process and gracefully complete after refresh event.
 
 ### Precautions
-1. If you use Async annotation within Scheduling Configuration, there is chance that previous task continue to run after 
-Refresh event. So move the `Async` to a service method.
+1. If you use Async annotation within Scheduling Configuration, there is chance that previous task continue to run after Refresh event. So move the `Async` to a service method.
