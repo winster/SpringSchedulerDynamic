@@ -64,12 +64,19 @@ Interesting thing to note is `received a response something task-19 2020-05-12T1
 ### Precautions
 1. If you use Async annotation within Scheduling Configuration, there is chance that previous task continue to run after Refresh event. So move the `Async` to a service method.
 2. I also added a custom AsyncConfigurer to make sure that nothing breaks. It is optional. You can refer the commit history to see the code without AsyncConfigurer
-3. When opentracing library to the project, I noticed that the last executor is still active, which is a problem. To test, just add following dependency to pom.xml
+3. When opentracing library to the project, I noticed that the last executor is still active, which is a problem. To test, just add either of the following dependencies to pom.xml
 ```
 <dependency>
     <groupId>io.opentracing.contrib</groupId>
     <artifactId>opentracing-spring-jaeger-cloud-starter</artifactId>
     <version>3.1.2</version>
+</dependency>
+
+or 
+
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-sleuth</artifactId>
 </dependency>
 ```
 
