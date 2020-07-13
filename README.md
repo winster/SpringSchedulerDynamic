@@ -7,12 +7,12 @@ I started with ScheduledRegistrar and it seems to work. When I wanted to cancel 
 
 ### How to Test
 
-1. scheduledtask.properties has a property `scheduled.fixedratedelay=5000`
-2. Run application and watch logs in MyJob
+1. scheduledtask.properties has a property `scheduled.job1Interval=5000`
+2. Run application and watch logs in AppService::job1
 3. Now change scheduledtask.properties as follows
-`scheduled.fixedratedelay=1000`
+`scheduled.job1Interval=1000`
 4. Now curl
-`curl -X POST http://localhost:8080/actuator/refresh` will give `["scheduled.fixedratedelay"]`
+`curl -X POST http://localhost:8080/actuator/refresh` will give `["scheduled.job1Interval"]`
 5. Watch logs again
 6. You can observer something similar as follows
 ```
@@ -63,3 +63,4 @@ Interesting thing to note is `received a response something task-19 2020-05-12T1
 
 ### Precautions
 1. If you use Async annotation within Scheduling Configuration, there is chance that previous task continue to run after Refresh event. So move the `Async` to a service method.
+2. I also added a custom AsyncConfigurer to make sure that nothing breaks. It is optional. You can refer the commit history to see the code without AsyncConfigurer
