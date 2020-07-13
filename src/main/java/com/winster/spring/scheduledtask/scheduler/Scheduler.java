@@ -1,4 +1,4 @@
-package com.winster.spring.scheduledtask.config;
+package com.winster.spring.scheduledtask.scheduler;
 
 import com.winster.spring.scheduledtask.service.AppService;
 import lombok.extern.slf4j.Slf4j;
@@ -15,8 +15,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 @EnableScheduling
 @Slf4j
 @RefreshScope
-@EnableAsync
-public class SchedulingConfiguration implements ApplicationListener<RefreshScopeRefreshedEvent> {
+public class Scheduler implements ApplicationListener<RefreshScopeRefreshedEvent> {
 
     @Autowired
     private AppService appService;
